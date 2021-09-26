@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RocketKotlin</string>
+    <string name="title">Варіанти бюджетів використання обох типів ркет:</string>
+    <string name="textAnswerFirstPart">Було використано </string>
+    <string name="textAnswerSecondPart"> ракет. Було витрачено </string>
+    <string name="textAnswerThirddPart"> мільйонів $</string>
+</resources>

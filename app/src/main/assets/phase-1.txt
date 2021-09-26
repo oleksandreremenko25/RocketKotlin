@@ -1,0 +1,15 @@
+1 building tools=2000
+2 building tools=2000
+3 building tools=2000
+4 building tools=5000
+5 building tools=5000
+6 building tools=2000
+7 building tools=1000
+8 building tools=5000
+9 building tools=6000
+10 shelter equipment=5000
+11 construction equipment=5000
+12 plants=1000
+13 steel=8000
+14 books=1000
+15 water=5000
