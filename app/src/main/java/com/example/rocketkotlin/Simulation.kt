@@ -24,17 +24,11 @@ class Simulation {
         return arrayListItem
     }
 
-    fun CalculationForLoadU1_2(typeRocket: String, itemList: MutableList<Item>): MutableList<Rocket> {
-        val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
+    fun loadU1(itemList: MutableList<Item>): MutableList<Rocket> {
+            val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
 
         while(itemList.isNotEmpty()) {
-            var fullU: Rocket
-
-            if (typeRocket == "U1") {
-                fullU = U1()
-            } else {
-                fullU = U2()
-            }
+            var fullU: Rocket = U1()
 
             for (i in 0 .. itemList.size) {
                 if (i < itemList.size && fullU.canCarry(itemList[i])) {
@@ -49,15 +43,27 @@ class Simulation {
         return listFullU;
     }
 
-    fun loadU1(itemMutableList: MutableList<Item>): MutableList<Rocket> {
-        return  CalculationForLoadU1_2("U1", itemMutableList)
-    }
+    fun loadU2(itemList: MutableList<Item>): MutableList<Rocket> {
+        val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
 
-    fun loadU2(itemArrayList: MutableList<Item>): MutableList<Rocket> {
-        return CalculationForLoadU1_2("U2", itemArrayList)
+        while(itemList.isNotEmpty()) {
+            var fullU: Rocket = U2()
+
+            for (i in 0 .. itemList.size) {
+                if (i < itemList.size && fullU.canCarry(itemList[i])) {
+                    fullU.carry(itemList[i])
+                    itemList.removeAt(i)
+                }
+            }
+
+            listFullU.add(fullU)
+        }
+
+        return listFullU;
     }
 
     fun runSimulation(contextThis: Context, typeRocket: String, arrayListFull_1: List<Rocket>, arrayListFull_2: List<Rocket>): String {
+        var numberAllRocket: Int = 0
         val arrayListFull_1_2 = arrayListFull_1 + arrayListFull_2
         var z: Int = 0
         val costOneRocket: Int;
@@ -66,6 +72,7 @@ class Simulation {
             if (arrayListFull_1_2[z].land() || arrayListFull_1_2[z].launch()) {
                 z++;
             }
+            numberAllRocket++
         }
 
         if (typeRocket == "U1") {
@@ -81,6 +88,6 @@ class Simulation {
         val textAnswerSecondPart: String = context.getString(R.string.textAnswerSecondPart)
         val textAnswerThirddPart: String = context.getString(R.string.textAnswerThirddPart)
 
-        return textAnswerFirstPart + " " + z + " " + textAnswerSecondPart + " " + z * costOneRocket + " " + textAnswerThirddPart;
+        return textAnswerFirstPart + " " + numberAllRocket + " " + textAnswerSecondPart + " " + numberAllRocket * costOneRocket + " " + textAnswerThirddPart;
     }
 }

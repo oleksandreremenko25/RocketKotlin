@@ -1,15 +1,13 @@
 package com.example.rocketkotlin
 
 class U2 : Rocket(120, 18, 29) {
-    fun launch(item: Item): Boolean {
-        val chanceOfLaunchExplosion: Int = 4 * (item.weight / liftingWeight)
-
-        return (chanceOfLaunchExplosion > 0)
+    override fun launch(): Boolean {
+        val chanceOfLaunchExplosion = 5 * ((currentWeight - emptyWeight) / (maxWeight - emptyWeight))
+        return chanceOfLaunchExplosion < Math.random() * 7
     }
 
-    fun land(item: Item): Boolean {
-        val chanceOfLaunchExplosion: Int =  8 * (item.weight / liftingWeight)
-
-        return (chanceOfLaunchExplosion > 0)
+    override fun land(): Boolean {
+        val chanceOfLaunchExplosion = 8 * ((currentWeight - emptyWeight) / (maxWeight - emptyWeight))
+        return chanceOfLaunchExplosion < Math.random() * 14
     }
 }
