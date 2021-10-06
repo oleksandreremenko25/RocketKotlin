@@ -1,7 +1,6 @@
 package com.example.rocketkotlin
 
 open class Rocket(val rocketCost: Int, var currentWeight: Int, val maxWeight: Int) : SpaceShip {
-    var liftingWeight: Int = maxWeight - currentWeight
     var emptyWeight: Int = 0
 
     override fun launch(): Boolean {

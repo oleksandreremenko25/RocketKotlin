@@ -25,7 +25,7 @@ class Simulation {
     }
 
     fun loadU1(itemList: MutableList<Item>): MutableList<Rocket> {
-            val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
+        val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
 
         while(itemList.isNotEmpty()) {
             var fullU: Rocket = U1()
