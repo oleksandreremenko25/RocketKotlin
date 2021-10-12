@@ -28,9 +28,12 @@ class Simulation {
         val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
 
         while(itemList.isNotEmpty()) {
-            var fullU: Rocket = U1()
+            val fullU: Rocket = U1()
 
             for (i in 0 .. itemList.size) {
+                if (fullU.maxWeight == fullU.currentWeight) {
+                    break
+                }
                 if (i < itemList.size && fullU.canCarry(itemList[i])) {
                     fullU.carry(itemList[i])
                     itemList.removeAt(i)
@@ -47,9 +50,12 @@ class Simulation {
         val listFullU: MutableList<Rocket> = mutableListOf<Rocket>()
 
         while(itemList.isNotEmpty()) {
-            var fullU: Rocket = U2()
+            val fullU: Rocket = U2()
 
             for (i in 0 .. itemList.size) {
+                if (fullU.maxWeight == fullU.currentWeight) {
+                    break
+                }
                 if (i < itemList.size && fullU.canCarry(itemList[i])) {
                     fullU.carry(itemList[i])
                     itemList.removeAt(i)
@@ -62,25 +68,20 @@ class Simulation {
         return listFullU;
     }
 
-    fun runSimulation(contextThis: Context, typeRocket: String, arrayListFull_1: List<Rocket>, arrayListFull_2: List<Rocket>): String {
-        var numberAllRocket: Int = 0
+    fun runSimulation(contextThis: Context, arrayListFull_1: List<Rocket>, arrayListFull_2: List<Rocket>): String {
+        var allRocketCost: Int = 0
         val arrayListFull_1_2 = arrayListFull_1 + arrayListFull_2
         var z: Int = 0
-        val costOneRocket: Int;
+        var numberAllRocket: Int = 0
+        val costOneRocket: Int = arrayListFull_1_2[0].rocketCost
 
         while (z < arrayListFull_1_2.size) {
-            if (arrayListFull_1_2[z].land() || arrayListFull_1_2[z].launch()) {
+            val oneRocket: Rocket = arrayListFull_1_2[z]
+            if (oneRocket.land() || oneRocket.launch()) {
                 z++;
             }
+            allRocketCost = allRocketCost + costOneRocket
             numberAllRocket++
-        }
-
-        if (typeRocket == "U1") {
-            val u1: U1 = U1()
-            costOneRocket = u1.rocketCost;
-        } else {
-            val u2: U2 = U2()
-            costOneRocket = u2.rocketCost;
         }
 
         val context: Context = contextThis
@@ -88,6 +89,6 @@ class Simulation {
         val textAnswerSecondPart: String = context.getString(R.string.textAnswerSecondPart)
         val textAnswerThirddPart: String = context.getString(R.string.textAnswerThirddPart)
 
-        return textAnswerFirstPart + " " + numberAllRocket + " " + textAnswerSecondPart + " " + numberAllRocket * costOneRocket + " " + textAnswerThirddPart;
+        return "$textAnswerFirstPart $numberAllRocket $textAnswerSecondPart $allRocketCost $textAnswerThirddPart";
     }
 }
