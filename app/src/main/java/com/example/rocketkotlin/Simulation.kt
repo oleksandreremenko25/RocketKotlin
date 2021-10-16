@@ -31,9 +31,6 @@ class Simulation {
             val fullU: Rocket = U1()
 
             for (i in 0 .. itemList.size) {
-                if (fullU.maxWeight == fullU.currentWeight) {
-                    break
-                }
                 if (i < itemList.size && fullU.canCarry(itemList[i])) {
                     fullU.carry(itemList[i])
                     itemList.removeAt(i)
@@ -53,9 +50,6 @@ class Simulation {
             val fullU: Rocket = U2()
 
             for (i in 0 .. itemList.size) {
-                if (fullU.maxWeight == fullU.currentWeight) {
-                    break
-                }
                 if (i < itemList.size && fullU.canCarry(itemList[i])) {
                     fullU.carry(itemList[i])
                     itemList.removeAt(i)
@@ -68,19 +62,20 @@ class Simulation {
         return listFullU;
     }
 
-    fun runSimulation(contextThis: Context, arrayListFull_1: List<Rocket>, arrayListFull_2: List<Rocket>): String {
-        var allRocketCost: Int = 0
-        val arrayListFull_1_2 = arrayListFull_1 + arrayListFull_2
-        var z: Int = 0
+    fun runSimulation(contextThis: Context, arrayListFull_1: MutableList<Rocket>, arrayListFull_2: MutableList<Rocket>): String {
         var numberAllRocket: Int = 0
-        val costOneRocket: Int = arrayListFull_1_2[0].rocketCost
+        var allRocketCost: Int = 0
+        arrayListFull_1.addAll(arrayListFull_2)
+        var z: Int = 0
 
-        while (z < arrayListFull_1_2.size) {
-            val oneRocket: Rocket = arrayListFull_1_2[z]
-            if (oneRocket.land() || oneRocket.launch()) {
+        while (z < arrayListFull_1.size) {
+            val oneRocket: Rocket = arrayListFull_1[z]
+
+            if (oneRocket.land() && oneRocket.launch()) {
                 z++;
             }
-            allRocketCost = allRocketCost + costOneRocket
+
+            allRocketCost = allRocketCost + oneRocket.rocketCost
             numberAllRocket++
         }
 

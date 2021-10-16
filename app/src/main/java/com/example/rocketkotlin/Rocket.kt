@@ -4,11 +4,11 @@ open class Rocket(val rocketCost: Int, var currentWeight: Int, val maxWeight: In
     var emptyWeight: Int = 0
 
     override fun launch(): Boolean {
-        return true;
+        return true
     }
 
     override fun land(): Boolean {
-        return true;
+        return true
     }
 
     override fun canCarry(item: Item): Boolean {

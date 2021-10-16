@@ -29,13 +29,13 @@ class MainActivity : AppCompatActivity() {
         val listFullloadU1: MutableList<Rocket> = simulation.loadU1(itemPhase1)
         val listFullloadU2: MutableList<Rocket> = simulation.loadU1(itemPhase2);
 
-        firstBudgetOption?.setText(simulation.runSimulation(this, listFullloadU1, listFullloadU2));
+        firstBudgetOption?.text = simulation.runSimulation(this, listFullloadU1, listFullloadU2);
 
         val itemPhase3: MutableList<Item> = simulation2.loadItems(this, "phase-1.txt")
         val itemPhase4: MutableList<Item> = simulation2.loadItems(this, "phase-2.txt")
         val listFullloadU3: MutableList<Rocket> = simulation2.loadU1(itemPhase3)
         val listFullloadU4: MutableList<Rocket> = simulation2.loadU2(itemPhase4)
 
-        secondBudgetOption?.setText(simulation2.runSimulation(this,listFullloadU3, listFullloadU4))
+        secondBudgetOption?.text = simulation2.runSimulation(this,listFullloadU3, listFullloadU4)
     }
 }
